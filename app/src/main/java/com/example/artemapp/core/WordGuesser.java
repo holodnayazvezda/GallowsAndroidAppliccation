@@ -1,7 +1,6 @@
 package com.example.artemapp.core;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Locale;
 
 public class WordGuesser {
@@ -13,9 +12,14 @@ public class WordGuesser {
     public WordGuesser(String wordToGuess) {
         this.wordToGuess = wordToGuess.toLowerCase(Locale.ROOT);
         amountOfAttempts = 2 * wordToGuess.length();
-        guessedLetters = new ArrayList<>(Collections.nCopies(wordToGuess.length(), ""));
+        guessedLetters = new ArrayList<>();
         unusedLetters = new ArrayList<>();
 
+        guessedLetters.add(String.valueOf(wordToGuess.charAt(0)));
+        for (int i = 0; i < wordToGuess.length() - 2; i++) {
+            guessedLetters.add("");
+        }
+        guessedLetters.add(String.valueOf(wordToGuess.charAt(wordToGuess.length() - 1)));
     }
 
     public String getWordToGuessWithAlreadyGuessedLetters() {
